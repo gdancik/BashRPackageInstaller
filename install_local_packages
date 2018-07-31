@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [ $# == 0 ]
+then
+echo "Usage: install_local_packages /full/path/to/packageName1 /full/path/to/packageName2 ..."
+exit
+fi
+
+for package in $@
+do
+echo "installing package $package"
+sudo su - -c "R -e \"install.packages('$package', repos = NULL, type = 'source')\""
+done
+

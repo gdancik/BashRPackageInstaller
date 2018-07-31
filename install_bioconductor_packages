@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [ $# == 0 ]
+then
+echo "Usage: install_bioconductor_packages packageName1 packageName2 ..."
+exit
+fi
+
+for package in $@
+do
+echo "installing package $package"
+sudo su - -c "R -e \"install.packages('$package',repos='https://cran.rstudio.com/')\""
+sudo su - -c "R -e \"source('http://bioconductor.org/biocLite.R'); biocLite('$package')\""
+done
+

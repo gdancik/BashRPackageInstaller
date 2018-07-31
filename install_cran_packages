@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [ $# == 0 ]
+then
+echo "Usage: install_cran_package packageName1 packageName2 ..."
+exit
+fi
+
+for package in $@
+do
+echo "installing package $package"
+sudo su - -c "R -e \"install.packages('$package',repos='https://cran.rstudio.com/')\""
+done
+
